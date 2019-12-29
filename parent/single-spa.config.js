@@ -25,7 +25,8 @@ registerApplication(
 registerApplication(
     'app2',
     loadReactApp,
-    () => location.pathname === "/app2"  ? true : false
+    () => location.pathname === "/app2"  ? true : false,
+    {data:{name:"Karthik"}}
   );
 
 start();
