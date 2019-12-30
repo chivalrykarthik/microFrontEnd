@@ -15,9 +15,9 @@ const Nav = props => {
     const navigateTo = url => window.history.pushState(null, null, url)
     return (
         <ul>
-            <li><a onClick={() => navigateTo('/')} >Home</a></li>
-            <li><a onClick={() => navigateTo('/app2')} >App2</a></li>
-            <li><a onClick={() => navigateTo('/user')} >User</a></li>
+            <li><Link to = '/'>Home</Link></li>
+            <li><Link to = '/app2'>App2</Link></li>
+            <li><Link to = '/user'>User</Link></li>            
         </ul>
     )
 }
