@@ -7,25 +7,27 @@ import { Provider } from 'react-redux';
 import './style.css';
 
 
-window.store = createStore(reducer);
-const Count = props => {
+(window as any).store = createStore(reducer);
+const Count = (props:any) => {
     return <div>CountApp</div>
 }
-const Nav = props => {
-    const navigateTo = url => window.history.pushState(null, null, url)
+const Nav = (props:any) => {
+    //const navigateTo = (url:string) => (window as any).history.pushState(null, null, url)
     return (
         <ul>
             <li><Link to = '/'>Home</Link></li>
             <li><Link to = '/app2'>App2</Link></li>
             <li><Link to = '/user'>User</Link></li>            
-			<li><Link to = '/app3'>App3</Link></li>
+			      <li><Link to = '/app3'>App3</Link></li>
         </ul>
     )
 }
 
-const App = () => {
+
+class App extends React.Component<any, any>{
+  render() {
     return (
-        <Provider store={window.store} >
+      <Provider store={(window as any).store} >
             <Router>
                 <Nav />
                 <Route exact path='/' component={Count} />
@@ -34,6 +36,7 @@ const App = () => {
             </Router>
         </Provider>
     )
+  }
 }
 
-export default App
+export default App;
