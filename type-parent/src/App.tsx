@@ -12,13 +12,18 @@ const Count = (props:any) => {
     return <div>CountApp</div>
 }
 const Nav = (props:any) => {
-    //const navigateTo = (url:string) => (window as any).history.pushState(null, null, url)
+    const navigateTo = (url:string) =>{
+		console.log('url===',url);
+		return (window as any).history.pushState(null, null, url)
+	}
     return (
         <ul>
             <li><Link to = '/'>Home</Link></li>
             <li><Link to = '/app2'>App2</Link></li>
             <li><Link to = '/user'>User</Link></li>            
-			      <li><Link to = '/app3'>App3</Link></li>
+			<li><Link to = '/app3'>App3</Link></li>
+			<li><Link to = '/viewUser'>View</Link></li>
+			
         </ul>
     )
 }

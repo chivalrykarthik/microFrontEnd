@@ -1,9 +1,11 @@
 import { registerApplication, start } from 'single-spa'
-
+let routeList = ['/app3','/viewUser'];
 registerApplication(
     'app2',
     () => import('./main'),
-    () => window.location.pathname === "/app3"  ? true : false
+    () => routeList.indexOf(window.location.pathname) !=-1  ? true : false
   );
+
+ 
 
 start();

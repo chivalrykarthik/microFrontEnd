@@ -18,8 +18,8 @@ const loadReactApp = async () => {
   return (window as any).reactApp;
 };
 const loadTypescriptApp = async () => {  
-   await runScript('https://cdnjs.cloudflare.com/ajax/libs/react/16.10.2/umd/react.development.js');
-  await runScript('https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.10.2/umd/react-dom.development.js');
+ // await runScript('https://cdnjs.cloudflare.com/ajax/libs/react/16.10.2/umd/react.development.js');
+  //await runScript('https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.10.2/umd/react-dom.development.js');
   
   
   await runScript('http://localhost:5000/main.js');
@@ -42,7 +42,7 @@ registerApplication(
   registerApplication(
     'app3',
     loadTypescriptApp,
-    () => window.location.pathname === "/app3"  ? true : false,
+    () => (window.location.pathname === "/app2" || window.location.pathname === "/")  ? false : true,
     {data:{name:"Karthik"}}
   );
 
