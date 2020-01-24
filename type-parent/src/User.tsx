@@ -1,10 +1,9 @@
 import React from 'react';
-import {connect} from 'react-redux';
 type IProps = {
 name:string;
 country:string;
 }
-type IState = IProps;
+
 const User = (props:IProps) =>{
     return (
         <div>
@@ -14,14 +13,5 @@ const User = (props:IProps) =>{
     )
 }
 
-const mapStateToProps = (state:IState)=>{
-    return {
-        name:state.name,
-        country:state.country
-    }
-}
-const User1 = ()=>{
-    return(<div>User</div>)
-}
-export default connect(mapStateToProps)(User);
-//export default User;
+
+export default User;

@@ -1,6 +1,6 @@
 interface Action{
     type:string;
-    data:any;
+    data?:any;
 }
 
 const initialValue = {
