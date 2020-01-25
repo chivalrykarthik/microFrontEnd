@@ -1,5 +1,4 @@
 import React from 'react';
-import {connect} from 'react-redux';
 
 const User = (props:any)=>{
     return(
@@ -9,9 +8,4 @@ const User = (props:any)=>{
     );
 }
 
-const mapStateToProps = (state)=>{
-    return{
-        name:state.name
-    }
-}
-export default connect(mapStateToProps)(User);
+export default User;

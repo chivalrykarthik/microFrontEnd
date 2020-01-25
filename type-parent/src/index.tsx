@@ -29,9 +29,9 @@ const loadTypescriptApp = async () => {
 /*Redux store */
 let store = createStore(reducer);
 //store.dispatch({type:"SHOW"});
-setTimeout(()=>{
-  store.dispatch({type:"UPD",data:{name:"Visakan"}});  
-},5000)
+setTimeout(() => {
+  store.dispatch({ type: "UPD", data: { name: "Visakan" } });
+}, 5000)
 /*Redux store */
 const initSingleSpa = () => {
   registerApplication(
@@ -46,21 +46,31 @@ const initSingleSpa = () => {
 
     }
   );
-  /*
-    registerApplication(
-      'app2',
-      loadReactApp,
-      () => window.location.pathname === "/app2" ? true : false,
-      { data: { name: "Karthik" } }
-    );
-  
-    registerApplication(
-      'app3',
-      loadTypescriptApp,
-      () => (window.location.pathname === "/app2" || window.location.pathname === "/") ? false : true,
-      { data: { name: "Karthik" } }
-    );
-  */
+
+  registerApplication(
+    'app2',
+    loadReactApp,
+    () => window.location.pathname === "/app2" ? true : false,
+    {
+      data: {
+        subscribeParent: store.subscribe,
+        parentState: store.getState
+      }
+    }
+  );
+
+  registerApplication(
+    'app3',
+    loadTypescriptApp,
+    () => (window.location.pathname === "/app2" || window.location.pathname === "/") ? false : true,
+    {
+      data: {
+        subscribeParent: store.subscribe,
+        parentState: store.getState
+      }
+    }
+  );
+
   start();
 }
 initSingleSpa();
