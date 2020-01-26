@@ -12,7 +12,7 @@ const Root = (props) => {
             <p>Foo to the barz</p>
 
         </div>
-    )
+    );
 }
 
 class App extends React.Component<any, any> {
@@ -48,6 +48,7 @@ class App extends React.Component<any, any> {
         }
     }
     render() {
+        console.log('NODE_ENV: ', process.env.NODE_ENV);        
         return (
             <>
                 <p>Default User:{this.state.name}</p>
