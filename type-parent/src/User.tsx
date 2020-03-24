@@ -9,6 +9,7 @@ const User = (props:IProps) =>{
         <div>
             <p>Name:{props.name}</p>
             <p>Country:{props.country}</p>            
+            <p>Country:{props.country}</p> 
         </div>
     )
 }

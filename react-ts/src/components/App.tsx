@@ -1,8 +1,9 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { BrowserRouter as Router, Route, } from 'react-router-dom';
-import User from './User';
+//import User from './User';
 import "./../assets/scss/App.scss";
 
+const User = React.lazy(() => import('./User'));
 
 
 const Root = (props) => {
@@ -17,7 +18,7 @@ const Root = (props) => {
 
 class App extends React.Component<any, any> {
     state = { name: '' };
-    unsubscribe:any;
+    unsubscribe: any;
     componentDidMount() {
 
         if (this.props.data && this.props.data.name) {
@@ -35,20 +36,20 @@ class App extends React.Component<any, any> {
     componentDidUpdate(prevProps) {
         if (!prevProps.data?.subscribeParent &&
             typeof this.props.data?.subscribeParent === 'function') {
-               this.unsubscribe =  this.props.data.subscribeParent(()=>{
-                    let user = this.props.data.parentState();
-                    this.setState(user)
-                });
+            this.unsubscribe = this.props.data.subscribeParent(() => {
+                let user = this.props.data.parentState();
+                this.setState(user)
+            });
         }
     }
 
-    componentWillUnmount(){
-        if(typeof this.unsubscribe === "function"){
+    componentWillUnmount() {
+        if (typeof this.unsubscribe === "function") {
             this.unsubscribe();
         }
     }
     render() {
-        console.log('NODE_ENV: ', process.env.NODE_ENV);        
+        console.log('NODE_ENV: ', process.env.NODE_ENV);
         return (
             <>
                 <p>Default User:{this.state.name}</p>
@@ -57,7 +58,14 @@ class App extends React.Component<any, any> {
                 <Router>
                     <Route exact path="/" component={Root} />
                     <Route exact path="/app3" component={Root} />
-                    <Route exact path="/viewUser" render={()=><User {...this.state} /> } />
+                    <Route exact path="/viewUser"
+                        render={() => {
+                            return (
+                                <Suspense fallback={<div>loading....</div>}>
+                                    <User {...this.state} />
+                                </Suspense>
+                            );
+                        }} />
                 </Router>
 
 
